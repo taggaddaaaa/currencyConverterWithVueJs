@@ -78,4 +78,15 @@ new Vue({
 			})
 		}
 	},
+	
+	watch: {
+		from() {
+			this.rate = 0;
+		},
+		
+		to() {
+			this.rate = 0;
+		}
+		
+	}
 });
