@@ -5,7 +5,8 @@ new Vue({
 		currencies: {},
 		amount: null,
 		from: 'EUR',
-		to: 'USD'
+		to: 'USD',
+		rate: null
 	},
 	
 	computed: {
@@ -14,6 +15,15 @@ new Vue({
 		 */
 		formattedCurrencies() {
 			return Object.values(this.currencies);
+		},
+		
+		/**
+		 * Multiply the amount by the rate to get the result of converting currencies.
+		 * The number is shorten by 3 numbers after dot.
+		 * @return {string}
+		 */
+		calculateResult() {
+			return (Number(this.amount) * this.rate).toFixed(3);
 		}
 	},
 	
@@ -48,5 +58,17 @@ new Vue({
 			});
 		},
 		
+		/**
+		 * Call Axios API to get the rate of exchange between the two currencies selected.
+		 */
+		convertCurrency() {
+			const key = `${this.from}_${this.to}`;
+			
+			axios.get(`https://free.currconv.com/api/v7/convert?q=${key}&apiKey=63ab6589eff9bc56bc24`)
+			.then(response => {
+				//console.log(response);
+				this.rate = response.data.results[key].val;
+			})
+		}
 	},
 });
