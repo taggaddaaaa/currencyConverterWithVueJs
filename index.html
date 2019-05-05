@@ -31,15 +31,13 @@
             <div class="col-md-6">
                 <label for="from">From</label>
                 <select name="" id="from" class="form-control">
-                    <option value="">usd</option>
-                    <option value="">eur</option>
+                    <option value="" v-for="currency in formattedCurrencies">{{currency.currencyName}}</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="to">To</label>
                 <select name="" id="to" class="form-control">
-                    <option value="">usd</option>
-                    <option value="">eur</option>
+                    <option value="" v-for="currency in formattedCurrencies">{{currency.currencyName}}</option>
                 </select>
             </div>
         </div>

@@ -5,6 +5,15 @@ new Vue({
 		currencies: {}
 	},
 	
+	computed: {
+		/**
+		 * Convert object currencies to an array
+		 */
+		formattedCurrencies() {
+			return Object.values(this.currencies);
+		}
+	},
+	
 	mounted() {
 		this.getCurrencies();
 		
