@@ -48,7 +48,7 @@
 
                 <div class="text-center">
                     <button :disabled="disabled" @click="convertCurrency()" class="btn btl-lg btn-primary">
-                        Convert
+                        {{ loading ? 'Converting...' : 'Convert' }}
                     </button>
                 </div>
             </div>

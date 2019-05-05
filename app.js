@@ -6,7 +6,8 @@ new Vue({
 		amount: null,
 		from: 'EUR',
 		to: 'USD',
-		rate: null
+		rate: null,
+		loading: false
 	},
 	
 	computed: {
@@ -27,7 +28,7 @@ new Vue({
 		},
 		
 		disabled() {
-			return this.amount === '0' || !this.amount;
+			return this.amount === '0' || !this.amount || this.loading;
 		}
 	},
 	
@@ -67,9 +68,11 @@ new Vue({
 		 */
 		convertCurrency() {
 			const key = `${this.from}_${this.to}`;
+			this.loading = true;
 			
 			axios.get(`https://free.currconv.com/api/v7/convert?q=${key}&apiKey=63ab6589eff9bc56bc24`)
 			.then(response => {
+				this.loading = false;
 				//console.log(response);
 				this.rate = response.data.results[key].val;
 			})
