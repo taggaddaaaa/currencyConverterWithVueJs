@@ -24,6 +24,10 @@ new Vue({
 		 */
 		calculateResult() {
 			return (Number(this.amount) * this.rate).toFixed(3);
+		},
+		
+		disabled() {
+			return this.amount === '0' || !this.amount;
 		}
 	},
 	
