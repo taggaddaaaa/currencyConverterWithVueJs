@@ -23,7 +23,7 @@ new Vue({
 			const currencies = localStorage.getItem('currencies');
 			
 			if (currencies) {
-				this.currencies = localStorage.getItem('currencies');
+				this.currencies = JSON.parse(currencies);
 				
 				return;
 			}
